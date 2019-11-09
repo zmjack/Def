@@ -8,6 +8,9 @@
     <Description>Common constant definitions, just like MIME map, Unicode map, etc.</Description>
     <Company>dawnx.net</Company>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/zmjack/Def</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/zmjack/Def</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
