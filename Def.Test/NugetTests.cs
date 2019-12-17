@@ -20,5 +20,13 @@ namespace Def.Test
             Assert.Equal($@"{NuGet.PackagesPath}def\1.2.0\", NuGet.PackageFolder("def", new Version(1, 2)));
         }
 
+        [Fact]
+        public void PreviewTest()
+        {
+            Assert.Equal($@"{NuGet.PackagesPath}def\1.2.3.4-alpha\", NuGet.PackageFolder("def", new Version(1, 2, 3, 4), "alpha"));
+            Assert.Equal($@"{NuGet.PackagesPath}def\1.2.3-alpha\", NuGet.PackageFolder("def", new Version(1, 2, 3), "alpha"));
+            Assert.Equal($@"{NuGet.PackagesPath}def\1.2.0-alpha\", NuGet.PackageFolder("def", new Version(1, 2), "alpha"));
+        }
+
     }
 }
