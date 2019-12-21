@@ -8,7 +8,27 @@ namespace Def
 {
     public static class NuGet
     {
-        public static readonly string PackagesPath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\.nuget\packages\";
+        public static string PackagesPath { get; set; }
+
+        static NuGet()
+        {
+            switch (DefSetting.RuntimePlatform)
+            {
+                case RuntimePlatform.Default:
+                    PackagesPath = Environment.OSVersion.Platform switch
+                    {
+                        PlatformID.Win32NT => $@"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\.nuget\packages\",
+                        PlatformID.Unix => "~/.nuget/packages/",
+                        _ => throw new NotSupportedException(),
+                    };
+                    break;
+
+                case RuntimePlatform.DotNetFiddle:
+                    PackagesPath = "/usr/nugetCache";
+                    break;
+            }
+        }
+
         public static string PackageFolder(Assembly assembly, string previewVersion = null)
         {
             var regex = new Regex(@"(\d+)\.(\d+)\.(\d+)\.(\d+)");
